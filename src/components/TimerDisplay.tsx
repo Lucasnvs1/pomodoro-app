@@ -1,6 +1,21 @@
 import styled from 'styled-components';
 import { useTimer } from '../contexts/TimerContext';
 
+const CyclesContainer = styled.div`
+  display: flex;
+  gap: 8px;
+  margin-top: 1rem;
+`;
+
+const CycleDot = styled.div<{ $filled: boolean }>`
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: ${(props) => (props.$filled ? '#00875f' : '#323238')};
+  transition: background-color 0.3s;
+`;
+
+
 const DisplayContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,6 +56,16 @@ export function TimerDisplay() {
     <DisplayContainer>
       <TimeValue>{minutes}:{seconds}</TimeValue>
       <StatusLabel>{state.isActive ? 'Rodando' : statusText}</StatusLabel>
+
+      <CyclesContainer>
+        {Array.from({ length: 4 }).map((_, i) => (
+        <CycleDot
+          key={i}
+          $filled={i < (state.cyclesCompleted % 4)}
+          />
+        ))}
+      </CyclesContainer>
+    
     </DisplayContainer>
   );
 }

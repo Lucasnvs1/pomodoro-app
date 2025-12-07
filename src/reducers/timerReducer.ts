@@ -1,4 +1,4 @@
-import type { TimerState, TimerAction, TimerMode } from "../types/timer";
+import type { TimerState, TimerAction, TimerMode } from '../types/timer';
 
 const TIMES: Record<TimerMode, number> = {
     focus: 25 * 60,
@@ -23,7 +23,8 @@ export function timerReducer(state: TimerState, action: TimerAction): TimerState
 
         case 'RESET_TIMER':
             return {
-                ...state, isActive: false,
+                ...state,
+                isActive: false,
                 timeLeft: TIMES[state.mode],
             };
 
@@ -37,11 +38,28 @@ export function timerReducer(state: TimerState, action: TimerAction): TimerState
 
         case 'TICK':
             if (state.timeLeft <= 0) {
-                return {
-                    ...state,
-                    isActive: false,
-                    cyclesCompleted: state.mode === 'focus' ? state.cyclesCompleted + 1 : state.cyclesCompleted,
-                };
+                if (state.mode === 'focus') {
+                    const newCycles = state.cyclesCompleted + 1;
+                    const nextMode: TimerMode = newCycles % 4 === 0 ? 'longBreak' : 'shortBreak';
+
+                    return {
+                        ...state,
+                        mode: nextMode,
+                        timeLeft: TIMES[nextMode],
+                        isActive: false,
+                        cyclesCompleted: newCycles,
+                    };
+                }
+
+                else {
+                    return {
+                        ...state,
+                        mode: 'focus',
+                        timeLeft: TIMES.focus,
+                        isActive: false,
+                        cyclesCompleted: state.cyclesCompleted,
+                    };
+                }
             }
 
             return {
@@ -50,7 +68,6 @@ export function timerReducer(state: TimerState, action: TimerAction): TimerState
             };
 
         default:
-            return state
-
+            return state;
     }
-};
+}

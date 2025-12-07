@@ -1,73 +1,64 @@
-# React + TypeScript + Vite
+# 🍅 Pomodoro Dev
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Um timer Pomodoro moderno, construído para maximizar a produtividade e o foco nos estudos.
 
-Currently, two official plugins are available:
+![Project Status](https://img.shields.io/badge/status-concluído-green)
+![React](https://img.shields.io/badge/react-18-blue)
+![TypeScript](https://img.shields.io/badge/typescript-strict-blue)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎯 Objetivo
 
-## React Compiler
+Este projeto nasceu de uma necessidade pessoal: **estudar melhor**.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Acredito que a Técnica Pomodoro é uma das formas mais eficazes de manter o foco e evitar a fadiga mental. O objetivo deste app é fornecer uma ferramenta limpa, livre de distrações e tecnicamente robusta para gerenciar ciclos de foco e pausa, ajudando estudantes e desenvolvedores a manterem a consistência.
 
-## Expanding the ESLint configuration
+## 🚀 Tecnologias & Ferramentas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+O projeto foi desenvolvido com foco em **Clean Code**, escalabilidade e tipagem estrita.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+-   **[React 18](https://reactjs.org/)**: Biblioteca para construção da interface.
+-   **[TypeScript](https://www.typescriptlang.org/)**: Superset do JavaScript para tipagem estática e segurança do código.
+-   **[Vite](https://vitejs.dev/)**: Tooling de frontend para build rápido e otimizado.
+-   **[Styled Components](https://styled-components.com/)**: CSS-in-JS para estilização isolada e temas.
+-   **[Context API + useReducer](https://react.dev/reference/react/useReducer)**: Gerenciamento de estado global nativo (sem libs externas pesadas).
+-   **[Lucide React](https://lucide.dev/)**: Biblioteca de ícones leve e consistente.
+-   **ESLint & Prettier**: Padronização de código e boas práticas.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🏗️ Arquitetura e Estrutura
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+O projeto segue uma arquitetura modular, separando claramente as responsabilidades de visualização (UI) e lógica de negócios (Business Logic).
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Destaques Técnicos:
+* **Gestão de Estado:** Utilizamos o padrão `useReducer` para lidar com a lógica complexa de transição de estados (Foco -> Pausa Curta -> Pausa Longa), mantendo os componentes limpos.
+* **Persistência:** O estado do timer é salvo automaticamente no `localStorage`, garantindo que o progresso não seja perdido ao atualizar a página.
+* **Acessibilidade/UX:** Alertas sonoros ao fim dos ciclos e atualização dinâmica do título da página (`(24:59) Foco...`) para acompanhamento em outras abas.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ✨ Funcionalidades
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- [x] Timer regressivo preciso.
+- [x] Modos configuráveis: Foco (25min), Pausa Curta (5min) e Longa (15min).
+- [x] Automação de Ciclos: Troca automática de modos e contagem de ciclos.
+- [x] Notificação sonora (Alarme) ao finalizar um tempo.
+- [x] Persistência de dados local (sobrevive ao F5).
+- [x] Título da aba dinâmico com o tempo restante.
+
+## 📦 Como rodar o projeto
+
+```bash
+# 1. Clone o repositório
+git clone [https://github.com/SEU_USUARIO/pomodoro-dev.git](https://github.com/SEU_USUARIO/pomodoro-dev.git)
+
+# 2. Entre na pasta
+cd pomodoro-dev
+
+# 3. Instale as dependências
+npm install
+
+# 4. Rode o servidor de desenvolvimento
+npm run dev
+O projeto estará rodando em http://localhost:5173.
+
+🤝 Autor
+Feito por Lucas Neves durante estudos aprofundados de Arquitetura React e TypeScript.
+
+Entre em contato: https://www.linkedin.com/in/lucasneves00
